@@ -11,7 +11,7 @@ logger = setup_logger('stock_forecast_tool')
 from datetime import datetime, timedelta
 
 try:
-    from Kronos.kronos_predictor import kronos_predict, analyze_prediction_df
+    from src.Kronos.kronos_predictor import kronos_predict, analyze_prediction_df
 except ImportError as e:
     print(f"预测模型 导入失败: {e}")
     print("请确保 Gen_Portfolio 的父目录在 PYTHONPATH 中")
