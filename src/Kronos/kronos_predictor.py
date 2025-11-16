@@ -187,8 +187,14 @@ def clear_data(df: pd.DataFrame) -> pd.DataFrame:
 # -----------------------------------------------------------------
 # 5. 绘图函数 
 # -----------------------------------------------------------------
-def build_prediction_figure(history_data, predict_data, lookback=400):
-    """创建history_data与predict_data的专业对比图"""
+# -----------------------------------------------------------------
+# 5. 绘图函数 
+# -----------------------------------------------------------------
+def build_prediction_figure(history_data, predict_data):
+    """
+    创建history_data与predict_data的专业对比图
+    
+    """
     
     fig = make_subplots(
         rows=2, cols=1,
@@ -198,8 +204,8 @@ def build_prediction_figure(history_data, predict_data, lookback=400):
         specs=[[{"secondary_y": False}], [{"secondary_y": False}]]
     )
     
-    #  复制数据，并反转历史数据的 log 变换
-    hist_data = history_data.tail(lookback).copy()
+
+    hist_data = history_data.copy()
     
     if 'volume' in hist_data.columns:
         # 检查数据是否真的被log过 (例如，最大值 < 30)
@@ -288,9 +294,11 @@ def build_prediction_figure(history_data, predict_data, lookback=400):
     title_end_date = "..."
     if predict_data is not None and not predict_data.empty:
         title_end_date = pred_times[-1].date() # type: ignore
+
+    title_start_date = hist_data['date'].iloc[0].date() if not hist_data.empty else "..."
         
     fig.update_layout(
-        title=f"🎯 Kronos AI股票预测结果分析 ({hist_data['date'].iloc[0].date()} - {title_end_date})",
+        title=f"🎯 Kronos AI股票预测结果分析 ({title_start_date} - {title_end_date})",
         template="plotly_white",
         height=800,
         showlegend=True,
@@ -308,7 +316,6 @@ def build_prediction_figure(history_data, predict_data, lookback=400):
     fig.update_yaxes(title_text="成交量", row=2, col=1)
     
     return fig
-
 
 
 
