@@ -51,7 +51,7 @@ flowchart TD
     Q[intent_recognition_agent*<br/>用户输入]:::pink --> A[intent_recognition_agent*<br/>意图识别智能体*]:::pink
     
     A[intent_recognition_agent*<br/>意图识别智能体*]:::pink --> B[market_data_tool<br/>数据获取工具]:::blue
-    A[intent_recognition_agent*<br/>意图识别智能体*]:::pink --> O[market_data_tool<br/>闲聊对话智能体]:::green
+    A[intent_recognition_agent*<br/>意图识别智能体*]:::pink --> O[market_data_tool<br/>闲聊对话智能体*]:::green
 
     B --> C[technical_analysis_tool<br/>技术分析工具]:::yellow
     B --> D[stock_forecast_tool<br/>股票预测工具]:::yellow
@@ -199,7 +199,7 @@ KRONOS_TOKENIZER_PATH="C:/Users/xx/.cache/modelscope/hub/models/AI-ModelScope/Kr
 ### 4. 模型运行
 
 ```
-chainlit run src/chainlit_app.py  # 注意这里应是 chainlit_app.py 的相对路径
+chainlit run chainlit_app.py 
 ```
 
 在终端运行代码成功后，访问地址 http://localhost:8000，进入界面后在对话框输入需要咨询的问题即可。
